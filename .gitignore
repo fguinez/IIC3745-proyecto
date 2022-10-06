@@ -72,3 +72,6 @@ yarn-debug.log*
 /node_modules
 
 /config/cloudinary.yml
+
+# macOS
+.DS_Store
