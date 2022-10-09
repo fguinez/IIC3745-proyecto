@@ -1,6 +1,6 @@
 # Proyecto DCCinema Grupo 10
 #### Entrega: 1
-#### Url Heroku:
+#### Url Heroku: https://iic3745-proyecto.herokuapp.com/
 
 
 ### Logros
