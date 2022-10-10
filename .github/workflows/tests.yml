@@ -39,17 +39,21 @@ jobs:
           ruby-version: '3.1.2'
           bundler-cache: true
           
-      - name: Create DB
+      - name: Install requirements
+        run: bundle install
+          
+      - name: Setup DB
         env:
-          RAILS_ENV: "test"
+          RAILS_ENV: test
           DB_USER: postgres
           DB_PASSWORD: postgres
+          POSTGRES_DB: test_database_name
           DATABASE_URL: "postgres://{DB_USER}@localhost:5432/{POSTGRES_DB}"
         run: |
           bundle exec rails db:create
-        # bundle exec rails db:migrate
-        # bundle exec rails db:seed
-        # bundle exec rails db:migrate RAILS_ENV=test
+          bundle exec rails db:migrate
+          bundle exec rails db:seed
+          bundle exec rails db:migrate RAILS_ENV=test
                 
       - name: Run rails tests
         run: bundle exec rails test
