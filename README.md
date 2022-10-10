@@ -4,7 +4,6 @@
 
 
 ### Logros
- Dejar explicito lo que no lograron hacer de la entrega o si lograron hacer todo lo pedido
  
 - Se subió y configuró el proyecto exitósamente.
 - Se definió que se trabajará Github flow, incluyendo además una rama por entrega. Actualmente ya se encuentra creada la rama `E1`.
