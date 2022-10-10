@@ -62,6 +62,6 @@ jobs:
           DATABASE_URL: "postgres://postgres@localhost:5432/test_database_name"
         run: bundle exec rails test
         
-      - uses: romeovs/lcov-reporter-action@v0.2.16
+      - uses: joshmfrankel/simplecov-check-action@main
         with:
-          lcov-file: ./coverage/lcov.info
+          github_token: ${{ secrets.GITHUB_TOKEN }}
