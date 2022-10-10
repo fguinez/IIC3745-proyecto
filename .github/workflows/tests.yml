@@ -61,3 +61,7 @@ jobs:
           DB_PASSWORD: postgres
           DATABASE_URL: "postgres://postgres@localhost:5432/test_database_name"
         run: bundle exec rails test
+        
+      - uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          lcov-file: ./coverage/lcov.info
