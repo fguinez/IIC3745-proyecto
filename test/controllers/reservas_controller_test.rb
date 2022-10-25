@@ -45,12 +45,12 @@ class ReservasControllerTest < ActionDispatch::IntegrationTest
 
   test 'Getting a reserva' do
     get new_reserva_url(5, '2000-11-12', 'TANDA'),
-           params: { reservation_seats: 'C-3', name: 'Diego' }
+        params: { reservation_seats: 'C-3', name: 'Diego' }
     assert_response :success
   end
 
   test 'Posting a reserva with invalid seat' do
-    assert_difference("Reserva.count", difference=2) do
+    assert_difference('Reserva.count', 2) do
       post new_reserva_url(5, '2000-11-12', 'TANDA'),
            params: { reservation_seats: 'C-9, C-10', name: 'Diego' }
     end
