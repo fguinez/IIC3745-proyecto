@@ -5,6 +5,6 @@ class Movie < ApplicationRecord
   has_many :movie_times, dependent: :destroy
 
   validates :title, presence: { message: 'El titulo no puede estar vacio' }, length: {
-    maximum: 128, message: 'El titulo tiene que ser de menos de 128 caracteres'
+    maximum: 128, message: 'El titulo tiene que ser a lo más 128 caracteres'
   }
 end
