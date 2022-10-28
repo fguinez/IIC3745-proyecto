@@ -2,20 +2,20 @@ class Product < ApplicationRecord
     validates :price, presence: { message: 'El precio no puede estar vacio' },
                       numericality: { only_integer: true, greater_than_or_equal_to: 0}
     validates :category, presence: { message: 'La categoria no puede estar vacia' },
-                         inclusion: { in: %w[Bebestible Comestibles, Souvenir],
+                         inclusion: { in: %w[Bebestible Comestibles Souvenir],
                             message: '%<value>s no es una categoria valida' }
-    validates :weight, numericality: { greater_than: 0 } # gramos
-    validates :volume, numericality: { greater_than: 0 } # cc
+    validates :weight, numericality: { greater_than: 0, allow_nil: true } # gramos
+    validates :volume, numericality: { greater_than: 0, allow_nil: true } # cc
     validate :validate_category
 
     def validate_category
         case category
         when 'Bebestible'
-            validate :validate_bebestible
+            validate_bebestible
         when'Comestibles'
-            validate :validate_comestibles
+            validate_comestibles
         when 'Souvenir'
-            validate :validate_souvenir
+            validate_souvenir
         end
     end
 
@@ -38,10 +38,10 @@ class Product < ApplicationRecord
     end
 
     def validate_souvenir
-        if weight.nil?
+        if not weight.nil?
             errors.add(:weight, 'Los souvenirs no deben tener peso')
         end
-        if volume.nil?
+        if not volume.nil?
             errors.add(:volume, 'Los souvenirs no deben tener volumen')
         end
     end

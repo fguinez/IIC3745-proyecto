@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
 
   def create
-    product_params = params.require(:price).require(:category).permit(:weight, :volume)
-    @product = Product.new(product_params)
+    params.require(:category)
+    params.require(:price)
+    product_params = params.permit(:price, :category, :weight, :volume)
+    @product = Product.create(product_params)
   end
 
   def read

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'products/create'
+  post 'products/create', to: 'products#create'
   get 'products/read'
   get 'products/update'
   get 'products/delete'
