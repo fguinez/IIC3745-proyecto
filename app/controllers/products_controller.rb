@@ -1,5 +1,7 @@
-class ProductsController < ApplicationController
+# frozen_string_literal: true
 
+# Controler that manages all actions related to product CRUD
+class ProductsController < ApplicationController
   def index
     @products = Product.all
   end
@@ -16,7 +18,6 @@ class ProductsController < ApplicationController
     weight = params[:weight]
     volume = params[:volume]
 
-
     @product = Product.new(price:, category:, weight:, volume:)
     if @product.save
       redirect_to '/product/new', notice: 'producto creada con exito'
@@ -28,8 +29,7 @@ class ProductsController < ApplicationController
     puts 'finnnn'
   end
 
-  def read
-  end
+  def read; end
 
   def update
     # product_params = params.require(:price, :category).permit(:weight, :volume)
@@ -51,5 +51,4 @@ class ProductsController < ApplicationController
     redirect_to redirect_to '/product/new', notice: 'producto eliminado con exito'
 
   end
-    
 end
