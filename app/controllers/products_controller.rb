@@ -1,5 +1,7 @@
-class ProductsController < ApplicationController
+# frozen_string_literal: true
 
+# Controler that manages all actions related to product CRUD
+class ProductsController < ApplicationController
   def create
     params.require(:category)
     params.require(:price)
@@ -7,8 +9,7 @@ class ProductsController < ApplicationController
     @product = Product.create(product_params)
   end
 
-  def read
-  end
+  def read; end
 
   def update
     # product_params = params.require(:price, :category).permit(:weight, :volume)
@@ -25,6 +26,5 @@ class ProductsController < ApplicationController
     # end
   end
 
-  def delete
-  end
+  def delete; end
 end

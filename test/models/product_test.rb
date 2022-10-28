@@ -1,6 +1,7 @@
-require "test_helper"
+# frozen_string_literal: true
 
-# rubocop:disable Layout/ClassLength
+require 'test_helper'
+
 class ProductTest < ActiveSupport::TestCase
   def teardown
     Product.destroy_all
@@ -77,53 +78,52 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal(true, product.valid?)
   end
 
-    # volume tests
+  # volume tests
 
-    test 'Product con volumen negativo' do
-      product = Product.create(price: 100, category: 'Bebestible', volume: -1)
-      assert_equal(false, product.valid?)
-    end
-  
-    test 'Product con volumen 0' do
-      product = Product.create(price: 100, category: 'Bebestible', volume: 0)
-      assert_equal(false, product.valid?)
-    end
-  
-    test 'Product con volumen válido decimal' do
-      product = Product.create(price: 100, category: 'Bebestible', volume: 1.1)
-      assert_equal(true, product.valid?)
-    end
+  test 'Product con volumen negativo' do
+    product = Product.create(price: 100, category: 'Bebestible', volume: -1)
+    assert_equal(false, product.valid?)
+  end
 
-    # validate_category tests
+  test 'Product con volumen 0' do
+    product = Product.create(price: 100, category: 'Bebestible', volume: 0)
+    assert_equal(false, product.valid?)
+  end
 
-    test 'Product con categoria Bebestible y sin volumen' do
-      product = Product.create(price: 100, category: 'Bebestible')
-      assert_equal(false, product.valid?)
-    end
+  test 'Product con volumen válido decimal' do
+    product = Product.create(price: 100, category: 'Bebestible', volume: 1.1)
+    assert_equal(true, product.valid?)
+  end
 
-    test 'Product con categoria Bebestible y con peso' do
-      product = Product.create(price: 100, category: 'Bebestible', volume: 100, weight: 100)
-      assert_equal(false, product.valid?)
-    end
+  # validate_category tests
 
-    test 'Product con categoria Comestibles y sin peso' do
-      product = Product.create(price: 100, category: 'Comestibles')
-      assert_equal(false, product.valid?)
-    end
+  test 'Product con categoria Bebestible y sin volumen' do
+    product = Product.create(price: 100, category: 'Bebestible')
+    assert_equal(false, product.valid?)
+  end
 
-    test 'Product con categoria Comestibles y con volumen' do
-      product = Product.create(price: 100, category: 'Comestibles', weight: 100, volume: 100)
-      assert_equal(false, product.valid?)
-    end
+  test 'Product con categoria Bebestible y con peso' do
+    product = Product.create(price: 100, category: 'Bebestible', volume: 100, weight: 100)
+    assert_equal(false, product.valid?)
+  end
 
-    test 'Product con categoria Souvenir y con peso' do
-      product = Product.create(price: 100, category: 'Souvenir', weight: 100)
-      assert_equal(false, product.valid?)
-    end
+  test 'Product con categoria Comestibles y sin peso' do
+    product = Product.create(price: 100, category: 'Comestibles')
+    assert_equal(false, product.valid?)
+  end
 
-    test 'Product con categoria Souvenir y con volumen' do
-      product = Product.create(price: 100, category: 'Souvenir', volume: 100)
-      assert_equal(false, product.valid?)
-    end
+  test 'Product con categoria Comestibles y con volumen' do
+    product = Product.create(price: 100, category: 'Comestibles', weight: 100, volume: 100)
+    assert_equal(false, product.valid?)
+  end
+
+  test 'Product con categoria Souvenir y con peso' do
+    product = Product.create(price: 100, category: 'Souvenir', weight: 100)
+    assert_equal(false, product.valid?)
+  end
+
+  test 'Product con categoria Souvenir y con volumen' do
+    product = Product.create(price: 100, category: 'Souvenir', volume: 100)
+    assert_equal(false, product.valid?)
+  end
 end
-# rubocop:enable Layout/ClassLength
