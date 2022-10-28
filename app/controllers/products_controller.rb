@@ -3,7 +3,12 @@
 # Controler that manages all actions related to product CRUD
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    if params[:category]
+      @category = params[:category]
+      @products = Product.where(['category = ?', @category])
+    else
+      @products = Product.all
+    end
   end
 
   # GET products/new
@@ -45,4 +50,13 @@ class ProductsController < ApplicationController
     @product.delete
     redirect_to redirect_to '/product/new', notice: 'producto eliminado con exito'
   end
+
+  # def list_by_category
+
+  #   @category = params[:category]
+
+  #   puts @category
+
+  #   @products = Product.includes(:category).where(['category == ?', @category])
+  # end
 end

@@ -1,27 +1,33 @@
+<p class="title is-3 has-text-centered">Gestionar Productos</p>
 
-<div>
-<p> hola </p>
+<%= form_with url: products_by_category_path, method: :get do |form| %>
+  <div class="field is-horizontal">
+    <div class="field-label is-medium">
+      <%= form.label :category, "Categoria:"%>
+    </div>
+    <div class="select is-fullwidth">
+      <%= form.select :category, ['Bebestible', 'Comestibles', 'Souvenir'], class: 'select'%>
+    </div>
+  </div>
+  <%= form.submit "Filtrar" , class: "button is-rounded is-link"%>
+<% end %>
+<div class="column"></div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Categoria</th>
-      <th>Price</th>
-      <th>Volumen</th>
-      <th>weight</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.category %></td>
-        <td><%= product.price %></td>
-        <td><%= product.volume %></td>
-        <td><%= product.weight %></td>
-      </tr>
+<div class="columns is-centered">
+  <div class="column"></div>
+  <div class="column has-text-centered">
+    <%=link_to "Volver", home_path, class: "button is-rounded is-link home_button" %>
+  </div>
+  <div class="column"></div>
+<div class="main_movie_times_container">
+    <% @products.each do |product|%>
+          <div class="movie_time_container">
+              <div class="movie_title" >
+                  <p class="title is-5 has-text-white"><%= "Papas" %></p>
+              </div>
+              <p class="title is-5 has-text-white"><%= product.price %></p>
+              <p class="title is-5 has-text-white"><%= product.category %></p>
+          </div>
     <% end %>
-  </tbody>
-</table>
+</div>
 </div>
