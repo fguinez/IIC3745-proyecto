@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   # GET products/new
   def new
     @product = Product.new
-  end 
+  end
 
   # POST products/new
   def create
@@ -20,16 +20,11 @@ class ProductsController < ApplicationController
 
     @product = Product.new(price:, category:, weight:, volume:)
     if @product.save
-      redirect_to '/product/new', notice: 'producto creada con exito'
-      puts 'kee'
+      redirect_to '/products/new', notice: 'producto creada con exito'
     else
-      redirect_to '/product/new', notice: @product.errors.messages
-      puts 'noo'
+      redirect_to '/products/new', notice: @product.errors.messages
     end
-    puts 'finnnn'
   end
-
-  def read; end
 
   def update
     # product_params = params.require(:price, :category).permit(:weight, :volume)
@@ -49,6 +44,5 @@ class ProductsController < ApplicationController
   def delete
     @product.delete
     redirect_to redirect_to '/product/new', notice: 'producto eliminado con exito'
-
   end
 end
