@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'products/create'
+  get 'products/read'
+  get 'products/update'
+  get 'products/delete'
   get 'reservas/new/:sala/:fecha/:horario', to: 'reservas#new', as: 'new_reserva'
   post 'reservas/new/:sala/:fecha/:horario', to: 'reservas#create'
   get 'movie/new'
