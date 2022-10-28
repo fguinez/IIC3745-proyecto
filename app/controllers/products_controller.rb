@@ -41,18 +41,24 @@ class ProductsController < ApplicationController
   end
 
   def update
-    # @product = Product.find(params[:id])
-    # puts params[:id]
+    @product = Product.find(params[:id])
+    puts params[:id]
+  end
 
-    # if @product.persisted?
-    #   if @product.update(product_params)
-    #     redirect_to product_path(@product) , notice 'Producto actualizado con exito'
-    #   else
-    #     redirect_to '/product/new', notice: product.errors.message
-    #   end
-    # else
-    #   redirect_to '/product/new', notice: product.errors.message
-    # end
+  def send_changes
+    name = params[:name]
+    category = params[:category]
+    price = params[:price]
+    weight = params[:weight]
+    volume = params[:volume]
+
+    @product = Product.find(params[:id])
+
+    if @product.update(name:, price:, category:, weight:, volume:)
+      redirect_to '/products/index', notice: 'Producto se actualizó con exito'
+    else
+      redirect_to product_edit_path(:id => params[:id]), notice: @product.errors.messages
+    end
   end
 
   def delete

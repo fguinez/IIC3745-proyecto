@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'products/new', to: 'products#create'
   get 'products/index', to: 'products#index', as: 'products_by_category'
   get 'products/update', to: 'products#update', as: 'product_edit'
+  post 'products/update', to: 'products#send_changes'
   get 'products/delete', to: 'products#delete', as: 'product_delete'
   get 'reservas/new/:sala/:fecha/:horario', to: 'reservas#new', as: 'new_reserva'
   post 'reservas/new/:sala/:fecha/:horario', to: 'reservas#create'
