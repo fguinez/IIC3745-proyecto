@@ -3,10 +3,23 @@
 # Controler that manages all actions related to product CRUD
 class ProductsController < ApplicationController
   def index
-    if params[:category]
-      @category = params[:category]
-      @products = Product.where(['category = ?', @category])
+    @checkbox = { Bebestible: false, Comestibles: false, Souvenir: false }
+    if params[:Bebestible] || params[:Comestibles] || params[:Souvenir]
+      @products = []
+      if params[:Bebestible]
+        @checkbox[:Bebestible] = true
+        @products.push(*Product.where(category: 'Bebestible'))
+      end
+      if params[:Comestibles]
+        @checkbox[:Comestibles] = true
+        @products.push(*Product.where(category: 'Comestibles'))
+      end
+      if params[:Souvenir]
+        @checkbox[:Souvenir] = true
+        @products.push(*Product.where(category: 'Souvenir'))
+      end
     else
+      @checkbox = { Bebestible: true, Comestibles: true, Souvenir: true }
       @products = Product.all
     end
   end
@@ -18,12 +31,13 @@ class ProductsController < ApplicationController
 
   # POST products/new
   def create
+    name = params[:name]
     category = params[:category]
     price = params[:price]
     weight = params[:weight]
     volume = params[:volume]
 
-    @product = Product.new(price:, category:, weight:, volume:)
+    @product = Product.new(name:, price:, category:, weight:, volume:)
     if @product.save
       redirect_to '/products/new', notice: 'producto creada con exito'
     else
@@ -47,16 +61,7 @@ class ProductsController < ApplicationController
   end
 
   def delete
-    @product.delete
-    redirect_to redirect_to '/product/new', notice: 'producto eliminado con exito'
+    Product.destroy(params[:id])
+    redirect_to '/products/index', notice: 'Producto eliminado con exito'
   end
-
-  # def list_by_category
-
-  #   @category = params[:category]
-
-  #   puts @category
-
-  #   @products = Product.includes(:category).where(['category == ?', @category])
-  # end
 end

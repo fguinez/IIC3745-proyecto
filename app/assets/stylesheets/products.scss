@@ -1,0 +1,89 @@
+// Place all the styles related to the movie controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.home_container{
+  padding-top: 15%;
+}
+.notice{
+  margin: 10px auto auto 10px ;
+}
+.sala_button{
+  margin: 1px 0 0 5px;
+  padding: 10px !important;
+  font-weight: bold;
+}
+.home_button{
+  margin-top: 10px;
+}
+body{
+  background: linear-gradient(#DFE9EF, #FAFCFD);
+  min-height: 100%;
+}
+
+.main-index{
+  display:block;
+  justify-content: center;
+  align-items: center;
+}
+
+.block{
+  width: 100%;
+}
+
+.filter{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.product_list{
+  padding: 5px;
+  display: flex;
+}
+
+.product_container{
+  color:lightgray;
+  background-color: darkblue;
+  border-radius: 5%;
+  padding: 10px;
+  margin: 10px;
+  justify-content: center;
+  align-content: space-between;
+  
+}
+
+.checkbox{
+  margin: 10px;
+}
+
+.product_title{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.product_data{
+  color:lightgray;
+  margin-top: 3px;
+  display:flex;
+  justify-content: center
+}
+
+.times_container{
+  display:flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.movie_image{
+  object-fit: cover;
+  height: 420px;
+  margin-inline: fill;
+  margin: 10px 10px 0 10px;
+}
+.movie_image_container{
+  display:flex;
+  justify-content: center;
+}
