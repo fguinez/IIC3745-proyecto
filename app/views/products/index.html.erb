@@ -58,11 +58,16 @@
                 <div class="product_title" >
                     <%= product.name %>
                 </div>
-                
                 <p class="product_data"> Categoría: <%= product.category %></p>
                 <p class="product_data"> Precio: <%= product.price %></p>
-                  <%=link_to "Editar", product_edit_path(:id => product), class: "button is-link buttoncito" %>
-                  <%=link_to "Borrar", product_delete_path(:id => product), method: :delete, class: "button is-link buttoncito"%>
+                <% case product.category
+                    when "Bebestible" %>
+                  <p class="product_data"> Volumen: <%= product.volume.round %> cc</p>
+                <% when "Comestibles" %>
+                  <p class="product_data"> Peso: <%= product.weight.round %> g</p>
+                <% end %>
+                <%=link_to "Editar", product_edit_path(:id => product), class: "button is-link buttoncito" %>
+                <%=link_to "Borrar", product_delete_path(:id => product), method: :delete, class: "button is-link buttoncito"%>
             </div>
       <% end %>
   </div>
