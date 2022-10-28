@@ -1,0 +1,27 @@
+
+<div>
+<p> hola </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th>Price</th>
+      <th>Volumen</th>
+      <th>weight</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.category %></td>
+        <td><%= product.price %></td>
+        <td><%= product.volume %></td>
+        <td><%= product.weight %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

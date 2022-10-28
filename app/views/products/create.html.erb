@@ -7,17 +7,31 @@
       <%= form_with model: @product do |form| %>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :Price , 'Precio:'%>
+            <%= form.label :price , 'Precio:'%>
           </div>
           <%= form.text_field :price, class:"input"%>
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :Category, "Categoria:", class:'label' %>
+            <%= form.label :category, "Categoria:", class:'label' %>
           </div>
           <div class="select is-fullwidth">
             <%= form.select :category, ['Bebestible', 'Comestibles', 'Souvenir'], class: 'select'%>
           </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :weight , 'Peso:'%>
+          </div>
+          <%= form.text_field :weight, class:"input"%>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :volume , 'Volumen:'%>
+          </div>
+          <%= form.text_field :volume, class:"input"%>
         </div>
         <%= form.submit "Crear", class: "button is-rounded is-link"%>
       <% end %>
