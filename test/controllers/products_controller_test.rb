@@ -3,25 +3,48 @@
 require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
-  # test "should get create" do
-  #   assert_difference 'Product.count' do
-  #     post products_create_url,
-  #          params: { price: 1, category: 'Bebestible', volume: 100 }
-  #   end
-  # end
+  def setup
+    @product = Product.create(price: 100, category: 'Bebestible', volume: 100)
+  end
 
-  # test "should get read" do
-  #   get products_read_url
-  #   assert_response :success
-  # end
+  def teardown
+    Product.destroy_all
+  end
+
+  test 'should create a product' do
+    assert_difference 'Product.count' do
+      post products_new_url,
+           params: { price: 1, category: 'Bebestible', volume: 100 }
+    end
+  end
+
+  test 'should not create a invalid product' do
+    assert_no_difference 'Product.count' do
+      post products_new_url,
+           params: { price: 1, category: 'Bebestible' }
+    end
+  end
+
+  test 'should get list of products' do
+    get products_by_category_url
+    assert_response :success
+  end
+
+  test 'should get a filtered list of products' do
+    get products_by_category_url,
+        params: { Bebestible: 1, Comestibles: 1, Souvenir: 1 }
+    assert_response :success
+  end
 
   # test "should get update" do
   #   get products_update_url
   #   assert_response :success
   # end
 
-  # test "should get delete" do
-  #   get products_delete_url
-  #   assert_response :success
-  # end
+  test 'should get delete' do
+    assert_difference('Product.count', -1) do
+      get product_delete_path,
+          params: { id: @product.id }
+    end
+  end
 end

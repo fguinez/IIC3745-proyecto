@@ -24,11 +24,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # GET products/new
-  def new
-    @product = Product.new
-  end
-
   # POST products/new
   def create
     name = params[:name]
@@ -46,9 +41,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-
-    @product = Product.find(params[:id])
-    puts params[:id]
+    # @product = Product.find(params[:id])
+    # puts params[:id]
 
     # if @product.persisted?
     #   if @product.update(product_params)
