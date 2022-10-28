@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'products/create'
+  get 'products/index'
+  
+  get 'products/new'
+  post 'products/new'
   get 'products/read'
   get 'products/update'
   get 'products/delete'

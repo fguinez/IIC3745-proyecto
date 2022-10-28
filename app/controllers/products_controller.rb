@@ -1,8 +1,22 @@
 class ProductsController < ApplicationController
 
+  def index
+    @products = Product.all
+  end
+
+  # GET products/new
+  def new
+    @product = Product.new
+  end 
+
+  # POST products/new
   def create
-    product_params = params.require(:price).require(:category).permit(:weight, :volume)
-    @product = Product.new(product_params)
+    @product = Product.new(category: params[:category], price: params[:price], weight: params[:weight], volume: params[:volume])
+    if @product.save
+      redirect_to '/product/new', notice: 'producto creada con exito'
+    else
+      redirect_to '/product/new', notice: @product.errors.messages
+    end
   end
 
   def read
@@ -24,5 +38,9 @@ class ProductsController < ApplicationController
   end
 
   def delete
+    @product.delete
+    redirect_to redirect_to '/product/new', notice: 'producto eliminado con exito'
+
   end
+    
 end

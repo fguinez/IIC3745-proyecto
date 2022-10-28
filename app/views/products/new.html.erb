@@ -1,19 +1,30 @@
-<h1>Products#create</h1>
-<p>Find me in app/views/products/create.html.erb</p>
-
-<div class="column is-one-third has-text-centered">
+<div class="columns is-vcentered is-centered">
+  <div class="column is-one-third is-centered">
     <div class="box">
-      <p class="title is-5">Registra un producto:</p>
-      <%= form_with model: @product do |form| %>
+      <%if notice %>
+        <%if params['success'] %>
+          <div class="notification is-success notice">
+            <p><i class='fas fa-circle'></i><%=" "+ notice%></p>
+          </div>
+          <%else %>
+          <div class="notification is-danger notice">
+            <p><i class='fas fa-circle'></i><%=" "+ notice%></p>
+          </div>
+        <%end %>
+      <%end %>
+
+    <p class="title is-5">Agregar producto</p>
+
+      <%= form_with do |form| %>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :price , 'Precio:'%>
+            <%= form.label :Price , 'Precio:'%>
           </div>
           <%= form.text_field :price, class:"input"%>
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :category, "Categoria:", class:'label' %>
+            <%= form.label :Category, "Categoria:"%>
           </div>
           <div class="select is-fullwidth">
             <%= form.select :category, ['Bebestible', 'Comestibles', 'Souvenir'], class: 'select'%>
@@ -33,7 +44,8 @@
           </div>
           <%= form.text_field :volume, class:"input"%>
         </div>
+
         <%= form.submit "Crear", class: "button is-rounded is-link"%>
       <% end %>
     </div>
-  </div>
+</div>
