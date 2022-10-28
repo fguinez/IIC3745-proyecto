@@ -35,19 +35,17 @@
     <%= form_with url: products_by_category_path, method: :get do |form| %>
       <div class="field is-horizontal">
         <div class="checkbox is-medium">
-          <%= check_box_tag(:Bebestible, 1, @checkbox[:Bebestible]) %>
+          <%= check_box_tag(:Bebestible, 1, @checkbox[:Bebestible], {onchange: "this.form.submit()"}) %>
           <%= label_tag(:Bebestible, "Bebestible") %>
         </div>
         <div class="checkbox is-medium">
-          <%= check_box_tag(:Comestibles, 1, @checkbox[:Comestibles], {
-  onchange: "$(this).data('params', 'complete=' + this.checked)"}) %>
+          <%= check_box_tag(:Comestibles, 1, @checkbox[:Comestibles], {onchange: "this.form.submit()"}) %>
           <%= label_tag(:Comestibles, "Comestibles") %>
         </div>
         <div class="checkbox is-medium">
-          <%= check_box_tag(:Souvenir, 1, @checkbox[:Souvenir]) %>
+          <%= check_box_tag(:Souvenir, 1, @checkbox[:Souvenir], {onchange: "this.form.submit()"}) %>
           <%= label_tag(:Souvenir, "Souvenir") %>
         </div>
-        <%= form.submit "Filtrar" , class: "button is-rounded is-link"%>
       </div>
     <% end %>
   </div>
