@@ -8,7 +8,7 @@
 - Se construyó el CRUD que representa los productos en la tienda. 
 - Se implementó la vista que despliega todos los productos. Además es posible filtrar los productos por las categorías que escoja el usuario.
 - No existen ofensas de rubocop.
-- Se implementaron los tests unitarios y de integración los cuales suman en conjunto 90 tests.
+- Se implementaron los tests unitarios y de integración los cuales suman en conjunto 91 tests.
 - Existe un 100% de coverage. 
 - Se actualizó el deploy a Heroku.
 

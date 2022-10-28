@@ -4,7 +4,7 @@ require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @product = Product.create(price: 100, category: 'Bebestible', volume: 100)
+    @product = Product.create(name: 'Agua', price: 100, category: 'Bebestible', volume: 100)
   end
 
   def teardown
@@ -14,7 +14,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test 'should create a product' do
     assert_difference 'Product.count' do
       post products_new_url,
-           params: { price: 1, category: 'Bebestible', volume: 100 }
+           params: { name: 'Agua', price: 1, category: 'Bebestible', volume: 100 }
     end
   end
 
@@ -48,14 +48,14 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update product values' do
     post product_updated_path,
-         params: { id: @product.id, price: 5, category: 'Bebestible', volume: 100 }
+         params: { id: @product.id, name: 'Agua', price: 5, category: 'Bebestible', volume: 100 }
     edited_product = Product.find(@product.id)
     assert_equal(5, edited_product.price)
   end
 
   test 'should not update product with invalid values' do
     post product_updated_path,
-         params: { id: @product.id, price: 100, category: 'Bebestible', volume: -5 }
+         params: { id: @product.id, name: 'Agua', price: 100, category: 'Bebestible', volume: -5 }
     product2 = Product.find(@product.id)
     assert_equal(@product.volume, product2.volume)
   end
