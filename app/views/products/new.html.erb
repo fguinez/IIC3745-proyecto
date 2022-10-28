@@ -1,34 +1,47 @@
-<div class="columns is-vcentered is-centered">
-  <div class="column is-one-third is-centered">
-    <div class="box">
-      <%if notice %>
-        <%if params['success'] %>
-          <div class="notification is-success notice">
+<% if notice %>
+  <div class="columns is-centered">
+    <div class="column"></div>
+    <% if notice.class == String %>
+      <div class="column">
+        <div class="notification is-success notice">
             <p><i class='fas fa-circle'></i><%=" "+ notice%></p>
-          </div>
-          <%else %>
-          <div class="notification is-danger notice">
-            <p><i class='fas fa-circle'></i><%=" "+ notice%></p>
-          </div>
-        <%end %>
-      <%end %>
-
-    <p class="title is-5">Agregar producto</p>
-
-      <%= form_with do |form| %>
-        <div class="field is-horizontal">
-          <div class="field-label is-medium">
-            <%= form.label :Price , 'Precio:'%>
-          </div>
-          <%= form.text_field :price, class:"input"%>
         </div>
+      </div>
+    <%else %>
+        <div class="column">
+          <div class="notification is-danger notice">
+            <% notice.values.each{|error| %>
+              <p><i class='fas fa-circle'></i><%=" " + error[0]%></p>
+            <% }%>
+          </div>
+        </div>
+
+    <% end %>
+    <div class="column"></div>
+    </div>
+<% end %>
+
+
+<div class="columns is-centered">
+  <div class="column is-one-third has-text-centered">
+    <div class="box">
+      <p class="title is-5">Gestionar productos</p>
+      <%= form_with model: @products do |form| %>
+
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :Category, "Categoria:"%>
+            <%= form.label :category, "Categoria:"%>
           </div>
           <div class="select is-fullwidth">
             <%= form.select :category, ['Bebestible', 'Comestibles', 'Souvenir'], class: 'select'%>
           </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :price , 'Precio:'%>
+          </div>
+          <%= form.text_field :price, class:"input"%>
         </div>
 
         <div class="field is-horizontal">
@@ -48,4 +61,5 @@
         <%= form.submit "Crear", class: "button is-rounded is-link"%>
       <% end %>
     </div>
+  </div>
 </div>

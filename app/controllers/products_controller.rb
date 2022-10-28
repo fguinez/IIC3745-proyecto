@@ -11,12 +11,21 @@ class ProductsController < ApplicationController
 
   # POST products/new
   def create
-    @product = Product.new(category: params[:category], price: params[:price], weight: params[:weight], volume: params[:volume])
+    category = params[:category]
+    price = params[:price]
+    weight = params[:weight]
+    volume = params[:volume]
+
+
+    @product = Product.new(price:, category:, weight:, volume:)
     if @product.save
       redirect_to '/product/new', notice: 'producto creada con exito'
+      puts 'kee'
     else
       redirect_to '/product/new', notice: @product.errors.messages
+      puts 'noo'
     end
+    puts 'finnnn'
   end
 
   def read

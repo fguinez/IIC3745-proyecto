@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'products/index'
   
   get 'products/new'
-  post 'products/new'
+  post 'products/new', to: 'products#create'
   get 'products/read'
   get 'products/update'
   get 'products/delete'
