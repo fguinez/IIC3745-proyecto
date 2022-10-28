@@ -2,7 +2,6 @@
 
 require 'test_helper'
 
-# rubocop:disable Layout/ClassLength
 class ProductTest < ActiveSupport::TestCase
   def teardown
     Product.destroy_all
@@ -137,4 +136,3 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal(false, product.valid?)
   end
 end
-# rubocop:enable Layout/ClassLength
