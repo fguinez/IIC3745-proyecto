@@ -36,10 +36,29 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should get update" do
-  #   get products_update_url
-  #   assert_response :success
-  # end
+  test 'should get update view' do
+    get product_edit_path(id: @product.id)
+    assert_response :success
+  end
+
+  test 'should not get update view when product dont exist' do
+    get product_edit_path(id: @product.id + 1000)
+    assert_response :redirect
+  end
+
+  test 'should update product values' do
+    post product_updated_path,
+         params: { id: @product.id, price: 5, category: 'Bebestible', volume: 100 }
+    edited_product = Product.find(@product.id)
+    assert_equal(5, edited_product.price)
+  end
+
+  test 'should not update product with invalid values' do
+    post product_updated_path,
+         params: { id: @product.id, price: 100, category: 'Bebestible', volume: -5 }
+    product2 = Product.find(@product.id)
+    assert_equal(@product.volume, product2.volume)
+  end
 
   test 'should get delete' do
     assert_difference('Product.count', -1) do

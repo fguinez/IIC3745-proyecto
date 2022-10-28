@@ -42,7 +42,8 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    puts params[:id]
+  rescue StandardError
+    redirect_to '/products/index', notice: 'Este producto no existe'
   end
 
   def send_changes
@@ -57,7 +58,7 @@ class ProductsController < ApplicationController
     if @product.update(name:, price:, category:, weight:, volume:)
       redirect_to '/products/index', notice: 'Producto se actualizó con exito'
     else
-      redirect_to product_edit_path(:id => params[:id]), notice: @product.errors.messages
+      redirect_to product_edit_path(id: params[:id]), notice: @product.errors.messages
     end
   end
 
