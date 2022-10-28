@@ -71,19 +71,3 @@ body{
   justify-content: center
 }
 
-.times_container{
-  display:flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 10px;
-}
-.movie_image{
-  object-fit: cover;
-  height: 420px;
-  margin-inline: fill;
-  margin: 10px 10px 0 10px;
-}
-.movie_image_container{
-  display:flex;
-  justify-content: center;
-}

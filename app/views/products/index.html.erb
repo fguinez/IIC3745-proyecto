@@ -39,7 +39,8 @@
           <%= label_tag(:Bebestible, "Bebestible") %>
         </div>
         <div class="checkbox is-medium">
-          <%= check_box_tag(:Comestibles, 1, @checkbox[:Comestibles]) %>
+          <%= check_box_tag(:Comestibles, 1, @checkbox[:Comestibles], {
+  onchange: "$(this).data('params', 'complete=' + this.checked)"}) %>
           <%= label_tag(:Comestibles, "Comestibles") %>
         </div>
         <div class="checkbox is-medium">
@@ -62,7 +63,7 @@
                 
                 <p class="product_data"> Categoría: <%= product.category %></p>
                 <p class="product_data"> Precio: <%= product.price %></p>
-                  <%=link_to "Editar", home_path, class: "button is-link buttoncito" %>
+                  <%=link_to "Editar", product_edit_path(:id => product), class: "button is-link buttoncito" %>
                   <%=link_to "Borrar", product_delete_path(:id => product), method: :delete, class: "button is-link buttoncito"%>
             </div>
       <% end %>

@@ -46,8 +46,9 @@ class ProductsController < ApplicationController
   end
 
   def update
-    # product_params = params.require(:price, :category).permit(:weight, :volume)
-    # @product = Product.find(params[:id])
+
+    @product = Product.find(params[:id])
+    puts params[:id]
 
     # if @product.persisted?
     #   if @product.update(product_params)
