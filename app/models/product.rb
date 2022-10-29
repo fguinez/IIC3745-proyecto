@@ -2,6 +2,7 @@
 
 # The model that represents a product
 class Product < ApplicationRecord
+  validates :name, presence: { message: 'El nombre no puede estar vacio' }
   validates :price, presence: { message: 'El precio no puede estar vacio' },
                     numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :category, presence: { message: 'La categoria no puede estar vacia' },
