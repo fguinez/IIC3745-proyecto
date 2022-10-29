@@ -1,0 +1,76 @@
+<% if notice %>
+  <div class="columns is-centered">
+    <div class="column"></div>
+    <% if notice.class == String %>
+      <div class="column">
+        <div class="notification is-success notice">
+            <p><i class='fas fa-circle'></i><%=" "+ notice%></p>
+        </div>
+      </div>
+    <%else %>
+        <div class="column">
+          <div class="notification is-danger notice">
+            <% notice.values.each{|error| %>
+              <p><i class='fas fa-circle'></i><%=" " + error[0]%></p>
+            <% }%>
+          </div>
+        </div>
+
+    <% end %>
+    <div class="column"></div>
+    </div>
+<% end %>
+
+
+<div class="columns is-centered">
+  <div class="column is-one-third has-text-centered">
+    <div class="box">
+      <p class="title is-5">Crear producto</p>
+      <%= form_with model: @products do |form| %>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :category, "Categoria:"%>
+          </div>
+          <div class="select is-fullwidth">
+            <%= form.select :category, ['Bebestible', 'Comestibles', 'Souvenir'], class: 'select'%>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :name , 'Nombre:'%>
+          </div>
+          <%= form.text_field :name, class:"input"%>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :price , 'Precio:'%>
+          </div>
+          <%= form.text_field :price, class:"input"%>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :weight , 'Peso:'%>
+          </div>
+          <%= form.text_field :weight, class:"input"%>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :volume , 'Volumen:'%>
+          </div>
+          <%= form.text_field :volume, class:"input"%>
+        </div>
+
+        <%= form.submit "Crear", class: "button is-rounded is-link"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="block has-text-centered">
+  <%=link_to "Volver", "/products/index", class: "button is-rounded is-link" %>
+</div>
