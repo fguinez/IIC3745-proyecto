@@ -12,8 +12,8 @@ class MovieTime < ApplicationRecord
   validates :date_start, presence: { message: 'Falta la fecha inicial' }
   validates :date_end, presence: { message: 'Falta la fecha final' }
   validates :place, presence: { message: 'Falta la sucursal.' },
-                  inclusion: { in: %w[Santiago Regional],
-                               message: '%<value>s no es una sucursal válida' }
+                    inclusion: { in: %w[Santiago Regional],
+                                 message: '%<value>s no es una sucursal válida' }
   validates :movie_id, presence: { message: 'Falta elegir una pelicula' }
   validate :validate_date
 

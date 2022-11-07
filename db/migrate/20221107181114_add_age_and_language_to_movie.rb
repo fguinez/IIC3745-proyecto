@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 class AddAgeAndLanguageToMovie < ActiveRecord::Migration[7.0]
   def change
-    add_column :movies, :minimum_age, :integer
-    add_column :movies, :language, :string
+    change_table :movies, bulk: true do |t|
+      t.column :minimum_age, :integer, null: false
+      t.column :language, :string, null: false
+    end
   end
 end

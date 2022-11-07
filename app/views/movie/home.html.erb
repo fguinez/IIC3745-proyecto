@@ -25,7 +25,7 @@
           <div class="field-label is-medium">
             <%= form.label :query, "Edad: ", class: 'label' %>
           </div>
-          <%= form.number_field :age , class: 'input', required: 'required', min: 0%>
+          <%= form.number_field :age , class: 'input', required: 'required', min: 0, placeholder: '0' %>
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
@@ -39,7 +39,7 @@
           <div class="field-label is-medium">
             <%= form.label :query, "Idioma: ", class: 'label' %>
           </div>
-          <%= select_tag(:sucursal, options_for_select(
+          <%= select_tag(:language, options_for_select(
             [['Inglés', 'EN'], ['Español', 'ES']
           ]), class: 'input selection') %>
         </div>

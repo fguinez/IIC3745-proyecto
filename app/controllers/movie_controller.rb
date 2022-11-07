@@ -35,5 +35,6 @@ class MovieController < ApplicationController
     @filter = Movie.includes(:movie_times).where(['movie_times.date_start <= ? and
                                                    ? <= movie_times.date_end',
                                                   @date, @date]).references(:movie_times)
+    @filter = Movie.all
   end
 end
