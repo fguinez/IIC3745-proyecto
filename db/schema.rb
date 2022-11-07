@@ -59,8 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_181225) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.integer "minimum_age"
-    t.string "language"
+    t.integer "minimum_age", null: false
+    t.string "language", null: false
   end
 
   create_table "products", force: :cascade do |t|
