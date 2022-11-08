@@ -2,14 +2,14 @@
 
 require 'test_helper'
 
-# rubocop:disable Layout/ClassLength
+# rubocop:disable Metrics/ClassLength
 class ReservaTest < ActiveSupport::TestCase
   def setup
     Reserva.destroy_all
-    movie = Movie.create(title: 'Movie')
+    movie = Movie.create(title: 'Movie', minimum_age: 0, language: 'EN')
     MovieTime.create(room: 5, date_start: Date.new(2022, 10, 10),
-                     date_end: Date.new(2022, 10, 12),
-                     time: 'TANDA', movie_id: movie.id)
+                     date_end: Date.new(2022, 10, 12), time: 'TANDA',
+                     place: 'Santiago', movie_id: movie.id)
   end
 
   def teardown
@@ -150,4 +150,4 @@ class ReservaTest < ActiveSupport::TestCase
     assert_equal(false, reserva.valid?)
   end
 end
-# rubocop:enable Layout/ClassLength
+# rubocop:enable Metrics/ClassLength

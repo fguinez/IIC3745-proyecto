@@ -11,7 +11,9 @@ class MovieController < ApplicationController
   def post
     title = params[:title]
     image = params[:image]
-    @movie = Movie.new(title:, image:)
+    minimum_age = params[:minimum_age]
+    language = params[:language]
+    @movie = Movie.new(title:, image:, minimum_age:, language:)
     if @movie.save
       redirect_to '/movie/new', notice: 'Pelicula creada con exito'
     else
@@ -21,7 +23,7 @@ class MovieController < ApplicationController
 
   def create_movie_time
     movie_time_params = params.require(:movie_time).permit(:movie_id, :time, :date_start,
-                                                           :date_end, :room)
+                                                           :date_end, :room, :place)
     movie_time = MovieTime.create(movie_time_params)
     if movie_time.persisted?
       redirect_to '/movie/new', notice: 'Pelicula asignada con exito'
@@ -35,5 +37,6 @@ class MovieController < ApplicationController
     @filter = Movie.includes(:movie_times).where(['movie_times.date_start <= ? and
                                                    ? <= movie_times.date_end',
                                                   @date, @date]).references(:movie_times)
+    @filter = Movie.all
   end
 end

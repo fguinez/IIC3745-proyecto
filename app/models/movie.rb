@@ -7,4 +7,13 @@ class Movie < ApplicationRecord
   validates :title, presence: { message: 'El titulo no puede estar vacio' }, length: {
     maximum: 128, message: 'El titulo tiene que ser a lo más 128 caracteres'
   }
+
+  validates :minimum_age, presence: { message: 'La edad mínima no puede estar vacía' },
+                          numericality: {
+                            only_integer: true, greater_than_or_equal_to: 0,
+                            message: 'La edad minima tiene que ser un entero mayor o igual a 0'
+                          }
+
+  validates :language, presence: { message: 'El idioma no puede estar vacio' },
+                       inclusion: { in: %w[EN ES], message: '%<value>s no es un idioma válido' }
 end
