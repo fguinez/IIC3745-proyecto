@@ -17,8 +17,8 @@ class MovieTimeTest < ActiveSupport::TestCase
   test 'MovieTime con parametros validos' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(true, movie_time.valid?)
   end
 
@@ -27,64 +27,64 @@ class MovieTimeTest < ActiveSupport::TestCase
   test 'MovieTime sin sala' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con sala no numérica' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 'a', date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con sala no entera' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 2.3, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con sala negativa' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: -1, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con sala 0' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 0, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con sala 7' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 7, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(true, movie_time.valid?)
   end
 
   test 'MovieTime con sala 8' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 8, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(true, movie_time.valid?)
   end
 
-  test 'MovieTime con sala 9' do
+  test 'MovieTime con sala 9 (inválida)' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 9, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
@@ -94,39 +94,39 @@ class MovieTimeTest < ActiveSupport::TestCase
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
                                   date_end: Date.new(2022, 11, 12),
-                                  movie_id: movie.id)
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con horario inválido' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'DESAYUNO', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'DESAYUNO',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con horario MATINÉ' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'MATINÉ', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'MATINÉ',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(true, movie_time.valid?)
   end
 
   test 'MovieTime con horario TANDA' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(true, movie_time.valid?)
   end
 
   test 'MovieTime con horario NOCHE' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'NOCHE', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'NOCHE',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(true, movie_time.valid?)
   end
 
@@ -135,8 +135,8 @@ class MovieTimeTest < ActiveSupport::TestCase
   test 'MovieTime sin date_start' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5,
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
@@ -144,9 +144,35 @@ class MovieTimeTest < ActiveSupport::TestCase
 
   test 'MovieTime sin date_end' do
     movie = Movie.create(title: 'Movie')
-    movie_time = MovieTime.create(room: 5,
+    movie_time = MovieTime.create(room: 5, place: 'Santiago',
                                   date_start: Date.new(2022, 11, 10),
                                   time: 'TANDA', movie_id: movie.id)
+    assert_equal(false, movie_time.valid?)
+  end
+
+  # place tests
+
+  test 'MovieTime sin place' do
+    movie = Movie.create(title: 'Movie')
+    movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  movie_id: movie.id)
+    assert_equal(false, movie_time.valid?)
+  end
+
+  test 'MovieTime con place Regional' do
+    movie = Movie.create(title: 'Movie')
+    movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Regional', movie_id: movie.id)
+    assert_equal(true, movie_time.valid?)
+  end
+
+  test 'MovieTime con place inválido' do
+    movie = Movie.create(title: 'Movie')
+    movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Endor', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
@@ -155,14 +181,14 @@ class MovieTimeTest < ActiveSupport::TestCase
   test 'MovieTime sin movie_id' do
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
                                   date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA')
+                                  time: 'TANDA', place: 'Santiago')
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime con movie_id inexistente' do
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: 0)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: 0)
     assert_equal(false, movie_time.valid?)
   end
 
@@ -171,29 +197,29 @@ class MovieTimeTest < ActiveSupport::TestCase
   test 'MovieTime start > end' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 12),
-                                  date_end: Date.new(2022, 11, 10),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 10), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(false, movie_time.valid?)
   end
 
   test 'MovieTime start = end' do
     movie = Movie.create(title: 'Movie')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 12),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie.id)
     assert_equal(true, movie_time.valid?)
   end
 
   test 'MovieTime con sala ocupada en dicha fecha' do
     movie = Movie.create(title: 'Movie')
     MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                     date_end: Date.new(2022, 11, 12),
-                     time: 'TANDA', movie_id: movie.id)
+                     date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                     place: 'Santiago', movie_id: movie.id)
 
     movie2 = Movie.create(title: 'Movie2')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
-                                  date_end: Date.new(2022, 11, 12),
-                                  time: 'TANDA', movie_id: movie2.id)
+                                  date_end: Date.new(2022, 11, 12), time: 'TANDA',
+                                  place: 'Santiago', movie_id: movie2.id)
     assert_equal(false, movie_time.valid?)
   end
 end
