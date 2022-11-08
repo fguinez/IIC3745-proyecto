@@ -27,15 +27,29 @@
       <%= form_with model: @movie do |form| %>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :Titulo , 'Titulo:'%>
+            <%= form.label :Titulo , 'Titulo:', class: 'label' %>
           </div>
           <%= form.text_field :title, class:"input"%>
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :Imagen, 'Imagen:' %>
+            <%= form.label :Imagen, 'Imagen:', class: 'label' %>
           </div>
           <%= form.file_field :image , class:"input", accept: 'image/*'%>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :Imagen, 'Edad mínima:', class: 'label' %>
+          </div>
+          <%= form.number_field :minimum_age, min: 0, placeholder: '0', class:"input", accept: 'image/*'%>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :query, "Idioma: ", class: 'label' %>
+          </div>
+          <div class="select is-fullwidth">
+            <%= form.select :language, [['Inglés', 'EN'], ['Español', 'ES']] %>
+          </div>
         </div>
         <%= form.submit "Crear", class: "button is-rounded is-link"%>
       <% end %>
@@ -73,6 +87,14 @@
             <%= form.label :date_end, "Día Termino: ", class:'label' %>
           </div>
           <%= form.date_field :date_end , class: 'input', min: Date.today%>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-medium">
+            <%= form.label :query, "Sucursal: ", class: 'label' %>
+          </div>
+          <div class="select is-fullwidth">
+            <%= form.select :place, ['Santiago', 'Regional'] %>
+          </div>
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
