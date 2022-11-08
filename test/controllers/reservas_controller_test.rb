@@ -4,10 +4,10 @@ require 'test_helper'
 
 class ReservasControllerTest < ActionDispatch::IntegrationTest
   def setup
-    movie = Movie.create(title: 'Matrix')
+    movie = Movie.create(title: 'Matrix', minimum_age: 0, language: 'EN')
     MovieTime.create(room: 5, date_start: Date.new(2000, 11, 10),
                      date_end: Date.new(2000, 11, 12), time: 'TANDA',
-                     movie_id: movie.id)
+                     place: 'Santiago', movie_id: movie.id)
   end
 
   def teardown
@@ -15,6 +15,7 @@ class ReservasControllerTest < ActionDispatch::IntegrationTest
     MovieTime.destroy_all
     Movie.destroy_all
   end
+
   test 'Posting a new reserva' do
     assert_difference 'Reserva.count' do
       post new_reserva_url(5, '2000-11-12', 'TANDA'),
