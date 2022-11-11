@@ -11,9 +11,9 @@ class MovieController < ApplicationController
   def post
     title = params[:title]
     image = params[:image]
-    minimum_age = params[:minimum_age].presence || 0
+    age_restriction = params[:age_restriction]
     language = params[:language]
-    @movie = Movie.new(title:, image:, minimum_age:, language:)
+    @movie = Movie.new(title:, image:, age_restriction:, language:)
     if @movie.save
       redirect_to '/movie/new', notice: 'Pelicula creada con exito'
     else
@@ -42,7 +42,10 @@ class MovieController < ApplicationController
     place = params[:sucursal]
     age = params[:age]
     language = params[:language]
-    @filter = Movie.where(['minimum_age <= ?', age])
+    @filter = Movie.where([
+                            '(age_restriction = ?) or (age_restriction = ? and ? >= 18)',
+                            'no', 'si', age
+                          ])
     @filter = if language == 'ES'
                 @filter.order(language: :desc)
               else

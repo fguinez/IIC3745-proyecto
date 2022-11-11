@@ -7,7 +7,7 @@ class MovieTimeTest < ActiveSupport::TestCase
   def setup
     MovieTime.destroy_all
     Movie.destroy_all
-    @movie = Movie.create(title: 'Movie', minimum_age: 0, language: 'EN')
+    @movie = Movie.create(title: 'Movie', age_restriction: 'no', language: 'EN')
   end
 
   def teardown
@@ -195,7 +195,7 @@ class MovieTimeTest < ActiveSupport::TestCase
                      date_end: Date.new(2022, 11, 12), time: 'TANDA',
                      place: 'Santiago', movie_id: @movie.id)
 
-    movie2 = Movie.create(title: 'Movie2', minimum_age: 0, language: 'EN')
+    movie2 = Movie.create(title: 'Movie2', age_restriction: 'no', language: 'EN')
     movie_time = MovieTime.create(room: 5, date_start: Date.new(2022, 11, 10),
                                   date_end: Date.new(2022, 11, 12), time: 'TANDA',
                                   place: 'Santiago', movie_id: movie2.id)

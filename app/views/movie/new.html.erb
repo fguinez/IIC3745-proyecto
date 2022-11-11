@@ -39,9 +39,11 @@
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
-            <%= form.label :Imagen, 'Edad mínima:', class: 'label' %>
+            <%= form.label :Imagen, 'Restricción de edad:', class: 'label' %>
           </div>
-          <%= form.number_field :minimum_age, min: 0, placeholder: '0', class:"input", accept: 'image/*'%>
+          <div class="select is-fullwidth">
+            <%= form.select :age_restriction, [['Si', 'si'], ['No', 'no']], class: 'select'%>
+          </div>
         </div>
         <div class="field is-horizontal">
           <div class="field-label is-medium">
@@ -65,7 +67,7 @@
             <%= form.label :movie_id, "Pelicula:", class:'label'%>
           </div>
           <div class="select is-fullwidth">
-            <%= form.collection_select :movie_id, Movie.all.order(:title), :id, :title, class:'select' %>
+            <%= form.collection_select :movie_id, Movie.all.order(:title), :id, :title_with_language, class:'select' %>
           </div>
         </div>
         <div class="field is-horizontal">

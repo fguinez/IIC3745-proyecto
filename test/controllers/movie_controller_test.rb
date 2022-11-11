@@ -5,7 +5,7 @@ require 'test_helper'
 class MovieControllerTest < ActionDispatch::IntegrationTest
   def setup
     @movie = Movie.create(
-      title: 'Matrix Rerecargado (2) final FINAL', minimum_age: 0, language: 'EN'
+      title: 'Matrix Rerecargado (2) final FINAL', age_restriction: 'no', language: 'EN'
     )
   end
 
@@ -24,14 +24,14 @@ class MovieControllerTest < ActionDispatch::IntegrationTest
   test 'Posting a new movie EN' do
     assert_difference 'Movie.count' do
       post create_movie_url,
-           params: { title: 'Motrix', minimum_age: 0, language: 'EN' }
+           params: { title: 'Motrix', age_restriction: 'no', language: 'EN' }
     end
   end
 
   test 'Posting a new movie ES' do
     assert_difference 'Movie.count' do
       post create_movie_url,
-           params: { title: 'Motrix', minimum_age: 0, language: 'ES' }
+           params: { title: 'Motrix', age_restriction: 'no', language: 'ES' }
     end
   end
 

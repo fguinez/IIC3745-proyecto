@@ -11,9 +11,8 @@
                   <p class="title is-4 has-text-white"><%= movie.title %></p>
               </div>
               <div class="movie_data" >
-                  <% if movie.minimum_age && movie.minimum_age > 0 %>
-
-                    <p class="title is-7 has-text-gray">+<%= movie.minimum_age %> |&nbsp;</p>
+                  <% if movie.age_restriction && movie.age_restriction == 'si' %>
+                    <p class="title is-7 has-text-gray">+18 |&nbsp;</p>
                   <% end %>
                   <p class="title is-7 has-text-gray"> <%= movie.language %></p>
               </div>
