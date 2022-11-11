@@ -20,16 +20,16 @@
 | Idioma    | ES        | ES         | EN         | EN         | ES        | ES         | EN         | EN         |
 | Edad      | +=18      | -18        | +=18       | -18        | +=18      | -18        | +=18       | -18        |
 | **Outputs**               |    |     |    |     |    |     |    |     |
-| Mostrar sucursal Regional | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| Mostrar sucursal Santiago | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Mostrar películas en sucursal Regional | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Mostrar películas en sucursal Santiago | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
 | Orden de las películas | 🇪🇸🇺🇸 | 🇪🇸🇺🇸 | 🇺🇸🇪🇸 | 🇺🇸🇪🇸 | 🇪🇸🇺🇸 | 🇪🇸🇺🇸 | 🇺🇸🇪🇸 | 🇺🇸🇪🇸 |
 | Mostrar peliculas aptas para menores de edad | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mostrar peliculas no aptas para menores de edad | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ |
 
-✅ = Si se muestra
-❌ = No se muestra
-🇪🇸🇺🇸 = Primero películas en español u luego películas en inglés
-🇺🇸🇪🇸 = Primero películas en inglés u luego películas en español
+- ✅ = Si se muestra
+- ❌ = No se muestra
+- 🇪🇸🇺🇸 = Primero películas en español y luego películas en inglés
+- 🇺🇸🇪🇸 = Primero películas en inglés y luego películas en español
 
 ### Consideraciones generales para la correcion
 
