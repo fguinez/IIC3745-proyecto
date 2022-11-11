@@ -26,6 +26,10 @@
 | Mostrar peliculas aptas para menores de edad | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mostrar peliculas no aptas para menores de edad | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ |
 
+✅ = Si se muestra
+❌ = No se muestra
+🇪🇸🇺🇸 = Primero películas en español u luego películas en inglés
+🇺🇸🇪🇸 = Primero películas en inglés u luego películas en español
 
 ### Consideraciones generales para la correcion
 
