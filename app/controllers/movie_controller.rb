@@ -34,9 +34,20 @@ class MovieController < ApplicationController
 
   def list_by_date
     @date = params[:date]
-    @filter = Movie.includes(:movie_times).where(['movie_times.date_start <= ? and
-                                                   ? <= movie_times.date_end',
-                                                  @date, @date]).references(:movie_times)
-    @filter = Movie.all
+    place = params[:sucursal]
+    age = params[:age]
+    language = params[:language]
+    @filter = Movie.where(['minimum_age <= ?', age])
+    if language == 'ES'
+      @filter = @filter.order(language: :desc)
+    else
+      @filter = @filter.order(language: :asc)
+    end
+    @filter = @filter.includes(:movie_times).where([
+      'movie_times.date_start <= ? and ? <= movie_times.date_end and movie_times.place = ?',
+      @date, @date, place
+    ]).references(:movie_times)
+    
   end
 end
+

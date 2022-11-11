@@ -16,11 +16,13 @@
                     <p class="title is-7 has-text-gray">+<%= movie.minimum_age %> |&nbsp;</p>
                   <% end %>
                   <p class="title is-7 has-text-gray"> <%= movie.language %></p>
+                  <% movie.movie_times.each do |movie_time|%>
+                    <p class="title is-7 has-text-gray"> <%= movie_time.place %></p>
+                  <%end%>
               </div>
               <% movie_filter = movie.movie_times.group_by{ |v| v.time }%>
               <% movie_filter.keys.each do |time|%>
                 <div class="times_container" >
-
                 <b><%= time%>:</b>
                 <% movie_filter[time].each do |sala|%>
                 <%= link_to "Sala #{sala['room']}", new_reserva_path(sala['room'], @date, time), class: 'sala_button button is-light is-outlined is-small button is-rounded'%>
