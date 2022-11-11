@@ -4,7 +4,7 @@ require 'test_helper'
 
 class ReservasControllerTest < ActionDispatch::IntegrationTest
   def setup
-    movie = Movie.create(title: 'Matrix', minimum_age: 0, language: 'EN')
+    movie = Movie.create(title: 'Matrix', age_restriction: 'no', language: 'EN')
     MovieTime.create(room: 5, date_start: Date.new(2000, 11, 10),
                      date_end: Date.new(2000, 11, 12), time: 'TANDA',
                      place: 'Santiago', movie_id: movie.id)

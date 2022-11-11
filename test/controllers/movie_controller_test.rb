@@ -5,7 +5,7 @@ require 'test_helper'
 class MovieControllerTest < ActionDispatch::IntegrationTest
   def setup
     @movie = Movie.create(
-      title: 'Matrix Rerecargado (2) final FINAL', minimum_age: 0, language: 'EN'
+      title: 'Matrix Rerecargado (2) final FINAL', age_restriction: 'no', language: 'EN'
     )
   end
 
@@ -21,10 +21,17 @@ class MovieControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'Posting a new movie' do
+  test 'Posting a new movie EN' do
     assert_difference 'Movie.count' do
       post create_movie_url,
-           params: { title: 'Motrix', minimum_age: 0, language: 'EN' }
+           params: { title: 'Motrix', age_restriction: 'no', language: 'EN' }
+    end
+  end
+
+  test 'Posting a new movie ES' do
+    assert_difference 'Movie.count' do
+      post create_movie_url,
+           params: { title: 'Motrix', age_restriction: 'no', language: 'ES' }
     end
   end
 
@@ -80,10 +87,35 @@ class MovieControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'Get movie list' do
+  test 'Get movie list ES' do
     get movies_by_date_url,
         params: {
-          date: Date.new(2000, 11, 12)
+          date: Date.new(2000, 11, 12),
+          age: 18,
+          language: 'ES',
+          sucursal: 'Santiago'
+        }
+    assert_response :success
+  end
+
+  test 'Get movie list EN' do
+    get movies_by_date_url,
+        params: {
+          date: Date.new(2000, 11, 12),
+          age: 18,
+          language: 'EN',
+          sucursal: 'Santiago'
+        }
+    assert_response :success
+  end
+
+  test 'Get movie list Regional' do
+    get movies_by_date_url,
+        params: {
+          date: Date.new(2000, 11, 12),
+          age: 18,
+          language: 'EN',
+          sucursal: 'Regional'
         }
     assert_response :success
   end

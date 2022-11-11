@@ -6,7 +6,7 @@ require 'test_helper'
 class ReservaTest < ActiveSupport::TestCase
   def setup
     Reserva.destroy_all
-    movie = Movie.create(title: 'Movie', minimum_age: 0, language: 'EN')
+    movie = Movie.create(title: 'Movie', age_restriction: 'si', language: 'EN')
     MovieTime.create(room: 5, date_start: Date.new(2022, 10, 10),
                      date_end: Date.new(2022, 10, 12), time: 'TANDA',
                      place: 'Santiago', movie_id: movie.id)

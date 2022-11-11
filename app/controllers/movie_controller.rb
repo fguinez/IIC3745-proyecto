@@ -11,9 +11,9 @@ class MovieController < ApplicationController
   def post
     title = params[:title]
     image = params[:image]
-    minimum_age = params[:minimum_age].presence || 0
+    age_restriction = params[:age_restriction]
     language = params[:language]
-    @movie = Movie.new(title:, image:, minimum_age:, language:)
+    @movie = Movie.new(title:, image:, age_restriction:, language:)
     if @movie.save
       redirect_to '/movie/new', notice: 'Pelicula creada con exito'
     else
@@ -32,11 +32,34 @@ class MovieController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def list_by_date
+    params.require(:date)
+    params.require(:sucursal)
+    params.require(:age)
+    params.require(:language)
     @date = params[:date]
-    @filter = Movie.includes(:movie_times).where(['movie_times.date_start <= ? and
-                                                   ? <= movie_times.date_end',
-                                                  @date, @date]).references(:movie_times)
-    @filter = Movie.all
+    place = params[:sucursal]
+    age = params[:age]
+    language = params[:language]
+    @filter = Movie.where([
+                            '(age_restriction = ?) or (age_restriction = ? and ? >= 18)',
+                            'no', 'si', age
+                          ])
+    @filter = if language == 'ES'
+                @filter.order(language: :desc)
+              else
+                @filter.order(language: :asc)
+              end
+    @filter = @filter
+              .includes(:movie_times)
+              .where([
+                       'movie_times.date_start <= ?
+                        and ? <= movie_times.date_end
+                        and movie_times.place = ?',
+                       @date, @date, place
+                     ])
+              .references(:movie_times)
   end
+  # rubocop:enable Metrics/MethodLength
 end
