@@ -32,22 +32,31 @@ class MovieController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def list_by_date
+    params.require(:date)
+    params.require(:sucursal)
+    params.require(:age)
+    params.require(:language)
     @date = params[:date]
     place = params[:sucursal]
     age = params[:age]
     language = params[:language]
     @filter = Movie.where(['minimum_age <= ?', age])
-    if language == 'ES'
-      @filter = @filter.order(language: :desc)
-    else
-      @filter = @filter.order(language: :asc)
-    end
-    @filter = @filter.includes(:movie_times).where([
-      'movie_times.date_start <= ? and ? <= movie_times.date_end and movie_times.place = ?',
-      @date, @date, place
-    ]).references(:movie_times)
-    
+    @filter = if language == 'ES'
+                @filter.order(language: :desc)
+              else
+                @filter.order(language: :asc)
+              end
+    @filter = @filter
+              .includes(:movie_times)
+              .where([
+                       'movie_times.date_start <= ?
+                        and ? <= movie_times.date_end
+                        and movie_times.place = ?',
+                       @date, @date, place
+                     ])
+              .references(:movie_times)
   end
+  # rubocop:enable Metrics/MethodLength
 end
-

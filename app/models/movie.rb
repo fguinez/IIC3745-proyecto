@@ -10,8 +10,9 @@ class Movie < ApplicationRecord
 
   validates :minimum_age, presence: { message: 'La edad mínima no puede estar vacía' },
                           numericality: {
-                            only_integer: true, greater_than_or_equal_to: 0,
-                            message: 'La edad minima tiene que ser un entero mayor o igual a 0'
+                            only_integer: true,
+                            greater_than_or_equal_to: 0, less_than_or_equal_to: 18,
+                            message: 'La edad minima tiene que ser un entero entre 0 y 18'
                           }
 
   validates :language, presence: { message: 'El idioma no puede estar vacio' },

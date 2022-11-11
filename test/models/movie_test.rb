@@ -56,9 +56,24 @@ class MovieTest < ActiveSupport::TestCase
     assert_equal(false, movie.valid?)
   end
 
-  test 'Movie con edad mínima 1' do
+  test 'Moviee con edad mínima 1' do
     movie = Movie.create(title: 'Matrix', minimum_age: 1, language: 'EN')
     assert_equal(true, movie.valid?)
+  end
+
+  test 'Movie con edad mínima 17' do
+    movie = Movie.create(title: 'Matrix', minimum_age: 17, language: 'EN')
+    assert_equal(true, movie.valid?)
+  end
+
+  test 'Movie con edad mínima 18' do
+    movie = Movie.create(title: 'Matrix', minimum_age: 18, language: 'EN')
+    assert_equal(true, movie.valid?)
+  end
+
+  test 'Movie con edad mínima 19' do
+    movie = Movie.create(title: 'Matrix', minimum_age: 19, language: 'EN')
+    assert_equal(false, movie.valid?)
   end
 
   # language tests

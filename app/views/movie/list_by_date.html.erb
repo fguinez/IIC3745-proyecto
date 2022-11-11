@@ -16,9 +16,6 @@
                     <p class="title is-7 has-text-gray">+<%= movie.minimum_age %> |&nbsp;</p>
                   <% end %>
                   <p class="title is-7 has-text-gray"> <%= movie.language %></p>
-                  <% movie.movie_times.each do |movie_time|%>
-                    <p class="title is-7 has-text-gray"> <%= movie_time.place %></p>
-                  <%end%>
               </div>
               <% movie_filter = movie.movie_times.group_by{ |v| v.time }%>
               <% movie_filter.keys.each do |time|%>
