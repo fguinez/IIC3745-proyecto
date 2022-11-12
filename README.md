@@ -10,6 +10,8 @@
 - Las películas son desplegadas posicionando en primer lugar las del idioma de preferencia.
 - Se creó una tabla de decisión sobre el formulario solicitado (la cual se encuentra en la siguiente sección).
 - Se crearon 8 tests de sistema utiliando Capybara. Los cuales prueban todas las reglas expuestas en la tabla de decisión.
+   - Para correr estos 8 tests, se debe ejecutar `rspec`.
+   - Se añadieron estos tests a Github Actions.
 - No existen ofensas de rubocop.
 - Se agregaros los tests unitarios y de integración debido a las nuevas funcionalidades. En total llegan a la suma de 103 tests.
 - Existe un 100% de coverage. 
