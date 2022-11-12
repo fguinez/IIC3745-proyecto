@@ -5,10 +5,13 @@
 
 ### Logros
  
-- Se construyó el CRUD que representa los productos en la tienda. 
-- Se implementó la vista que despliega todos los productos. Además es posible filtrar los productos por las categorías que escoja el usuario.
+- Se modificó el formulario solicitado añadiendo edad, sucursal e idioma.
+- Solo se despliegan las películas de la sucursal indicada y aptas para la edad del solicitante.
+- Las películas son desplegadas posicionando en primer lugar las del idioma de preferencia.
+- Se creó una tabla de decisión sobre el formulario solicitado (la cual se encuentra en la siguiente sección).
+- Se crearon 8 tests de sistema utiliando Capybara. Los cuales prueban todas las reglas expuestas en la tabla de decisión.
 - No existen ofensas de rubocop.
-- Se implementaron los tests unitarios y de integración los cuales suman en conjunto 91 tests.
+- Se agregaros los tests unitarios y de integración debido a las nuevas funcionalidades. En total llegan a la suma de 103 tests.
 - Existe un 100% de coverage. 
 - Se actualizó el deploy a Heroku.
 
@@ -33,5 +36,6 @@
 
 ### Consideraciones generales para la correcion
 
-- Adicionalmente a los atributos solicitados para productos, se consideró que estos deben tener un nombre asociado.
+- Entrega 2:
+    - Adicionalmente a los atributos solicitados para productos, se consideró que estos deben tener un nombre asociado.
 
