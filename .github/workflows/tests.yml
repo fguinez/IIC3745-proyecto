@@ -66,3 +66,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           minimum_suite_coverage: 100
+          
+      - name: Run rspec
+        env:
+          RAILS_ENV: test
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DATABASE_URL: "postgres://postgres@localhost:5432/test_database_name"
+        run: bundle exec rspec
